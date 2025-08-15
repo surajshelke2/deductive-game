@@ -109,15 +109,5 @@ pnpm build && pnpm start
 * **Correct within time**: **+1**
 * **Timeout**: **−1**
 * **Incorrect guess**: **0** (configurable; switch to −1 via a flag)
-
-> Adjust via `SCORING_MODE = 'strict' | 'lenient'`.
-
 ---
 
-
-**Badges (replace placeholders):**
-
-```
-![CI](https://img.shields.io/github/actions/workflow/status/<user>/<repo>/ci.yml)
-![License](https://img.shields.io/badge/license-MIT-green)
-```
