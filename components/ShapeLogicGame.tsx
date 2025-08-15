@@ -1,14 +1,14 @@
 "use client";
-import { useState } from 'react';
-import { ShapeType } from '@/types/game';
-import { GameHeader } from './GameHeader';
-import { GameGrid } from './GameGrid';
-import { ShapeOption } from './ShapeOption';
-import { GameTimer } from './GameTimer';
-import { GameResult } from './GameResult';
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
-import { useGame } from '@/hooks/useGames';
+import { useState } from "react";
+import { ShapeType } from "@/types/game";
+import { GameHeader } from "./GameHeader";
+import { GameGrid } from "./GameGrid";
+import { ShapeOption } from "./ShapeOption";
+import { GameTimer } from "./GameTimer";
+import { GameResult } from "./GameResult";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { useGame } from "@/hooks/useGames";
 
 export function ShapeLogicGame() {
   const { gameState, submitAnswer, handleTimeUp, startGame } = useGame();
@@ -40,7 +40,7 @@ export function ShapeLogicGame() {
               Complete the grid patterns using unique shapes per row and column
             </p>
           </div>
-          
+
           <div className="space-y-4 text-sm text-muted-foreground">
             <div className="grid grid-cols-3 gap-4 text-center">
               <div>
@@ -66,7 +66,7 @@ export function ShapeLogicGame() {
             </div>
           </div>
 
-          <Button 
+          <Button
             onClick={handleStartGame}
             size="lg"
             className="w-full bg-gradient-game hover:opacity-90 text-white font-semibold"
@@ -80,8 +80,10 @@ export function ShapeLogicGame() {
 
   if (isGameComplete) {
     const finalScore = gameState.score;
-    const correctAnswers = gameState.gameHistory.filter(h => h.correct).length;
-    
+    const correctAnswers = gameState.gameHistory.filter(
+      (h) => h.correct
+    ).length;
+
     return (
       <div className="min-h-screen bg-background flex items-center justify-center p-4">
         <Card className="max-w-lg w-full p-8 text-center space-y-6">
@@ -93,23 +95,29 @@ export function ShapeLogicGame() {
               You've completed all 15 attempts
             </p>
           </div>
-          
+
           <div className="space-y-4">
             <div className="grid grid-cols-3 gap-4 text-center">
               <div>
-                <div className="text-3xl font-bold text-primary">{finalScore}</div>
+                <div className="text-3xl font-bold text-primary">
+                  {finalScore}
+                </div>
                 <div className="text-sm text-muted-foreground">Final Score</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-game-correct">{correctAnswers}</div>
+                <div className="text-3xl font-bold text-game-correct">
+                  {correctAnswers}
+                </div>
                 <div className="text-sm text-muted-foreground">Correct</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-game-incorrect">{15 - correctAnswers}</div>
+                <div className="text-3xl font-bold text-game-incorrect">
+                  {15 - correctAnswers}
+                </div>
                 <div className="text-sm text-muted-foreground">Incorrect</div>
               </div>
             </div>
-            
+
             <div className="text-center p-4 bg-muted rounded-lg">
               <div className="text-sm text-muted-foreground">Accuracy</div>
               <div className="text-2xl font-bold text-foreground">
@@ -118,7 +126,7 @@ export function ShapeLogicGame() {
             </div>
           </div>
 
-          <Button 
+          <Button
             onClick={handleStartGame}
             size="lg"
             className="w-full bg-gradient-game hover:opacity-90 text-white font-semibold"
@@ -133,7 +141,7 @@ export function ShapeLogicGame() {
   return (
     <div className="min-h-screen bg-background p-4">
       <div className="max-w-6xl mx-auto space-y-6">
-        <GameHeader 
+        <GameHeader
           currentSection={gameState.currentSection}
           currentAttempt={gameState.currentAttempt}
           score={gameState.score}
@@ -150,8 +158,8 @@ export function ShapeLogicGame() {
           )}
 
           <div className="my-8">
-            <GameGrid 
-              grid={gameState.currentGameData?.grid ?? []} 
+            <GameGrid
+              grid={gameState.currentGameData?.grid ?? []}
               showAnswers={gameState.showResult}
             />
           </div>
@@ -164,12 +172,14 @@ export function ShapeLogicGame() {
               timeUp={!lastResult.userAnswer}
             />
           ) : (
-            <div className="space-y-6">
+            <div className="space-y-6 flex flex-col items-center">
               <h3 className="text-xl font-semibold text-center">
                 What shape belongs in the highlighted cell?
               </h3>
-              
-              <div className="grid grid-cols-3 md:grid-cols-5 gap-4 max-w-lg mx-auto">
+
+              <div
+                className={`grid gap-4 justify-center grid-cols-${gameState.currentGameData?.options.length}`}
+              >
                 {gameState.currentGameData?.options?.map((shape) => (
                   <ShapeOption
                     key={shape}

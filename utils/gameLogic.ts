@@ -226,11 +226,11 @@ export function generateGameAttempt(config: GameConfig): GameAttempt {
 */
 export function getShapeColor(shape: ShapeType): string {
   const colorMap = {
-    circle: 'game-circle',
-    triangle: 'game-triangle', 
-    star: 'game-star',
-    cross: 'game-cross',
-    square: 'game-square',
+     circle: 'text-green-600',   // Green circle
+    triangle: 'text-blue-600',  // Blue triangle
+    square: 'text-red-500',     // Red square
+    cross: 'text-yellow-500',     // Blue cross
+    star: 'text-purple-600',    // Purple star
   };
   return colorMap[shape];
 }

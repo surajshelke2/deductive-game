@@ -20,7 +20,7 @@ export function Shape({ type, size = 'md', className }: ShapeProps) {
       className={cn(
         'inline-flex items-center justify-center font-bold transition-all duration-200',
         sizeClasses[size],
-        `text-${getShapeColor(type)}`,
+        getShapeColor(type),
         className
       )}
     >

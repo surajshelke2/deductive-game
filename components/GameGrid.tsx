@@ -1,6 +1,6 @@
-import { GameCell } from '@/types/game';
-import { Shape } from './Shape';
-import { cn } from '../lib/utils';
+import { GameCell } from "@/types/game";
+import { Shape } from "./Shape";
+import { cn } from "../lib/utils";
 
 interface GameGridProps {
   grid: GameCell[][];
@@ -9,18 +9,18 @@ interface GameGridProps {
 
 export function GameGrid({ grid, showAnswers = false }: GameGridProps) {
   const gridSize = grid.length;
-  
-  const gridSizeClasses = {
-    3: 'grid-cols-3 gap-3 max-w-[420px]',
-    4: 'grid-cols-4 gap-3 max-w-[560px]',
-    5: 'grid-cols-5 gap-2.5 max-w-[700px]',
-  };
+
+ const gridSizeClasses = {
+  3: 'grid-cols-3 gap-1 max-w-[600px]',  
+  4: 'grid-cols-4 gap-1 max-w-[720px]',  
+  5: 'grid-cols-5 gap-1 max-w-[800px]',  
+};
 
   return (
     <div className="flex justify-center">
-      <div 
+      <div
         className={cn(
-          'grid bg-game-grid-bg rounded-2xl p-6 shadow-floating border border-game-cell-border',
+          "grid bg-game-grid-bg rounded-2xl p-4 shadow-floating border border-game-cell-border",
           gridSizeClasses[gridSize as keyof typeof gridSizeClasses]
         )}
       >
@@ -28,20 +28,22 @@ export function GameGrid({ grid, showAnswers = false }: GameGridProps) {
           <div
             key={`${cell.row}-${cell.col}`}
             className={cn(
-              'aspect-square rounded-xl border-3 border-game-cell-border bg-background flex items-center justify-center transition-all duration-200 shadow-cell',
-              'hover:border-primary/30 hover:bg-game-cell-hover hover:scale-105',
-              cell.isQuestion && !showAnswers && 'border-primary bg-primary/5 scale-105 shadow-game',
-              showAnswers && cell.isQuestion && 'border-game-correct bg-game-correct/10 scale-105 shadow-floating'
+              "aspect-square rounded-xl border-3 border-game-cell-border bg-background flex items-center justify-center transition-all duration-200 shadow-cell",
+              "hover:border-primary/30 hover:bg-game-cell-hover hover:scale-105",
+              cell.isQuestion &&
+                !showAnswers &&
+                "border-primary bg-primary/5 scale-105 shadow-game",
+              showAnswers &&
+                cell.isQuestion &&
+                "border-game-correct bg-game-correct/10 scale-105 shadow-floating"
             )}
           >
             {cell.isQuestion && !showAnswers ? (
               <span className="text-4xl font-bold text-primary">?</span>
             ) : (
-              cell.shape && (cell.isVisible || showAnswers) && (
-                <Shape 
-                  type={cell.shape} 
-                  size="lg"
-                />
+              cell.shape &&
+              (cell.isVisible || showAnswers) && (
+                <Shape type={cell.shape} size="lg" />
               )
             )}
           </div>
