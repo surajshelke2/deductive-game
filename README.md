@@ -60,10 +60,6 @@ Additional rules:
 
 * **Next.js (App Router)** + **React** + **TypeScript**
 * **Tailwind CSS** (+ optional **shadcn/ui** for UI components)
-* **Zustand** or **Context** for game state (choose one)
-
-> Works equally well in plain React + Vite; update scripts accordingly.
-
 ---
 
 ## 📦 Installation
